@@ -12,20 +12,11 @@ mongoose.connect(
 );
 requireDir('./src/models');
 
-const Product = mongoose.model('Product');
+// const Product = mongoose.model('Product');
 
-// Primeira rota
-// req: contem todos os detalhes e informações da requisição
-// res: resposta da requisição feita
-app.get('/', (req, res) => {
-    Product.create({
-        title: 'React Native',
-        description: 'Build native apps with React',
-        url: 'http://github.com/facebook/react-native'
-    });
-    
-    return res.send('Hello Rocketseat');
-});
+// Rotas
+// Toda vez em que se receber uma requisição vinda da rota api então será enviado a ./src/routes
+app.use('/api', require("./src/routes"));
 
 // aplicação estara ouvindo a porta 3001 do navegador
 app.listen(3001);
